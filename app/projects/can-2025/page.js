@@ -14,58 +14,36 @@ export default function CAN2025() {
     year: '2025',
     tag: 'Tableau',
     title: 'Analyse\nCAN 2025',
-    desc: 'Dashboard interactif et analyse complète sur la formation des joueurs ayant participé à la CAN 2025. Commandé par M. Sahib Dahbi, cadre de la direction technique de la FRMF. Focus sur la diaspora, les académies formatrices, l\'expatriation et les profils des joueurs.',
+    desc: "Dashboard interactif et analyse complète sur la formation des joueurs ayant participé à la CAN 2025. Focus sur la diaspora, les académies formatrices, l'expatriation et les profils des joueurs.",
   }
 
   const embedSection = (
     <>
       <div style={{display:'flex', gap:'2px', marginBottom:'16px'}}>
-        <button
-          onClick={() => setActiveView('tableau')}
-          style={{
+        {['tableau','pdf'].map(v => (
+          <button key={v} onClick={() => setActiveView(v)} style={{
             fontFamily:"'DM Mono',monospace", fontSize:'10px', letterSpacing:'2px',
             textTransform:'uppercase', padding:'10px 20px', border:'1px solid',
-            borderColor: activeView === 'tableau' ? '#a855f7' : '#1e1e1e',
-            color: activeView === 'tableau' ? '#a855f7' : '#555',
+            borderColor: activeView === v ? '#a855f7' : '#1e1e1e',
+            color: activeView === v ? '#a855f7' : '#555',
             background:'transparent', cursor:'pointer', transition:'all 0.2s'
-          }}
-        >
-          Dashboard Interactif
-        </button>
-        <button
-          onClick={() => setActiveView('pdf')}
-          style={{
-            fontFamily:"'DM Mono',monospace", fontSize:'10px', letterSpacing:'2px',
-            textTransform:'uppercase', padding:'10px 20px', border:'1px solid',
-            borderColor: activeView === 'pdf' ? '#a855f7' : '#1e1e1e',
-            color: activeView === 'pdf' ? '#a855f7' : '#555',
-            background:'transparent', cursor:'pointer', transition:'all 0.2s'
-          }}
-        >
-          Analyse PDF
-        </button>
+          }}>
+            {v === 'tableau' ? 'Dashboard Interactif' : 'Analyse PDF'}
+          </button>
+        ))}
       </div>
-
       {activeView === 'tableau' ? (
         <>
           <p className="embed-label">// Dashboard Tableau Public — Interactif</p>
           <div className="embed-container" style={{aspectRatio:'16/10'}}>
-            <iframe
-              src={`${TABLEAU_URL}?:embed=y&:showVizHome=no&:host_url=https%3A%2F%2Fpublic.tableau.com%2F&:embed_code_version=3&:tabs=no&:toolbar=yes&:animate_transition=yes&:display_static_image=no&:display_spinner=yes&:display_overlay=yes&:display_count=yes&:language=fr-FR`}
-              allowFullScreen
-              title="Dashboard CAN 2025"
-            />
+            <iframe src={`${TABLEAU_URL}?:embed=y&:showVizHome=no&:tabs=no&:toolbar=yes&:language=fr-FR`} allowFullScreen title="Dashboard CAN 2025" />
           </div>
         </>
       ) : (
         <>
           <p className="embed-label">// Analyse issue du Dashboard — PDF</p>
           <div className="embed-container">
-            <iframe
-              src={`https://drive.google.com/file/d/${PDF_ID}/preview`}
-              allow="autoplay"
-              title="Analyse CAN 2025 PDF"
-            />
+            <iframe src={`https://drive.google.com/file/d/${PDF_ID}/preview`} allow="autoplay" title="Analyse CAN 2025 PDF" />
           </div>
         </>
       )}
@@ -73,15 +51,10 @@ export default function CAN2025() {
   )
 
   return (
-    <ProjectLayout
-      meta={meta}
-      embedSection={embedSection}
-      prevProject={{ slug: 'these', title: 'Thèse xAb' }}
-      nextProject={{ slug: 'game-model-valencia', title: 'Game Model Valencia' }}
-    >
+    <ProjectLayout meta={meta} embedSection={embedSection} prevProject={{ slug: 'these', title: 'Thèse xAb' }} nextProject={{ slug: 'game-model-valencia', title: 'Game Model Valencia' }}>
       <h2>Contexte</h2>
       <p>
-        Ce projet a été commandé par M. Sahib Dahbi, cadre dans la direction technique de la FRMF (Fédération Royale Marocaine de Football). L'objectif : analyser la formation des joueurs ayant participé à la CAN 2025 — avec un focus particulier sur la diaspora africaine et les flux de formation internationaux.
+        Ce projet porte sur l'analyse de la formation des joueurs ayant participé à la CAN 2025, avec un focus particulier sur la diaspora africaine et les flux de formation internationaux.
       </p>
 
       <h2>Axes d'analyse</h2>
@@ -91,7 +64,7 @@ export default function CAN2025() {
         <li><strong>Clubs actuels</strong> — ligues et pays où évoluent les participants à la CAN 2025</li>
         <li><strong>Expatriation</strong> — âge moyen d'expatriation, corrélation avec le niveau sportif</li>
         <li><strong>Profils physiques</strong> — tailles, pieds forts, répartition par poste</li>
-        <li><strong>Liens entre pays</strong> — cartographie des flux formation → compétition</li>
+        <li><strong>Liens entre pays</strong> — cartographie des flux formation vers compétition</li>
       </ul>
 
       <h2>Outil</h2>
