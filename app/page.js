@@ -5,18 +5,32 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const timeline = [
-  { id: 'isep', label: 'ISEP Paris', type: 'academic', start: 2016.75, end: 2021.5, color: '#3b82f6', top: true },
-  { id: 'hwu', label: 'Heriot-Watt University', type: 'academic', start: 2018.0, end: 2018.5, color: '#ef4444', top: true, nested: true },
-  { id: 'rmeu', label: 'Real Madrid EU', type: 'academic', start: 2024.75, end: 2025.5, color: '#e8e8e8', top: true },
-  { id: 'kls', label: 'KLS', type: 'pro', start: 2020.08, end: 2020.5, color: '#eab308', top: false },
-  { id: 'deloitte', label: 'Deloitte', type: 'pro', start: 2021.17, end: 2021.5, color: '#22c55e', top: false },
-  { id: 'idoko', label: 'Idoko', type: 'pro', start: 2021.67, end: 2022.5, color: '#3b82f6', top: false },
-  { id: 'solutec', label: 'Solutec', type: 'pro', start: 2022.58, end: 2024.5, color: '#ef4444', top: false },
-  { id: 'cafpi', label: 'CAFPI', type: 'pro', start: 2022.67, end: 2023.5, color: '#f97316', top: false, nested: true },
-  { id: 'cacib', label: 'CACIB', type: 'pro', start: 2023.42, end: 2024.08, color: '#22c55e', top: false, nested: true },
-  { id: 'rm', label: 'Real Madrid', type: 'pro', start: 2024.75, end: 2025.33, color: '#e8e8e8', top: false },
-  { id: 'botswana', label: 'Botswana FA', type: 'pro', start: 2025.42, end: 2025.58, color: '#38bdf8', top: false },
-  { id: 'gc', label: 'Game Changers', type: 'pro', start: 2025.58, end: 2025.92, color: '#4ade80', top: false },
+  // ACADÉMIQUE
+  { id: 'isep', label: 'ISEP Paris', type: 'academic', start: 2016.75, end: 2021.5, color: '#3b82f6', top: true,
+    desc: "Master en Business Intelligence (M.Eng.). Formation en mathématiques appliquées, machine learning, big data, data mining et cloud computing. Semestre d'échange à Heriot-Watt University, Édimbourg (2018)." },
+  { id: 'hwu', label: 'Heriot-Watt University', type: 'academic', start: 2018.0, end: 2018.5, color: '#ef4444', top: true, nested: true,
+    desc: "Semestre d'échange à Édimbourg dans le cadre du cursus ingénieur de l'ISEP Paris." },
+  { id: 'rmeu', label: 'Real Madrid EU', type: 'academic', start: 2024.75, end: 2025.5, color: '#e8e8e8', top: true,
+    desc: "Master en Football Coaching & Management. Certification AI & Big Data for Sport [10/10]. Thèse : xAb Metric [9.7/10]. Formation en méthodologie d'entraînement, développement des talents et management de club." },
+  // PRO
+  { id: 'kls', label: 'KLS', type: 'pro', start: 2020.08, end: 2020.5, color: '#eab308', top: false,
+    desc: "Stage — Data Analyst. Création de dashboards automatisés Power BI. Développement de pipelines d'automatisation avec VBA." },
+  { id: 'deloitte', label: 'Deloitte', type: 'pro', start: 2021.17, end: 2021.5, color: '#22c55e', top: false,
+    desc: "Stage — Consultant Transaction Services. Analyses financières de PME marocaines pour évaluer leur éligibilité aux prêts post-COVID. Gestion des données financières du Groupe ALSA dans le cadre d'un processus M&A." },
+  { id: 'idoko', label: 'Idoko', type: 'pro', start: 2021.67, end: 2022.5, color: '#3b82f6', top: false,
+    desc: "Data Analyst. Conception et déploiement de l'infrastructure data de l'entreprise. Migration vers MySQL. Développement de dashboards Power BI pour le suivi des situations sensibles clients." },
+  { id: 'solutec', label: 'Solutec', type: 'pro', start: 2022.58, end: 2024.5, color: '#ef4444', top: false,
+    desc: "Consultant Data déployé sur deux missions : Data Engineer chez CAFPI (migration ETL SQL Server vers Azure) et Data Scientist chez CACIB (modèles ML de prévision de trésorerie et détection d'anomalies)." },
+  { id: 'cafpi', label: 'CAFPI', type: 'pro', start: 2022.67, end: 2023.42, color: '#f97316', top: false, nested: true,
+    desc: "Data Engineer. Migration et optimisation des pipelines ETL de SQL Server vers Microsoft Azure (Data Factory, Databricks). Automatisation CI/CD avec Azure DevOps." },
+  { id: 'cacib', label: 'CACIB', type: 'pro', start: 2023.5, end: 2024.08, color: '#22c55e', top: false, nested: true,
+    desc: "Data Scientist. Développement de modèles ML pour la prévision de flux de trésorerie et la détection d'anomalies. Clustering pour la segmentation d'entités." },
+  { id: 'rm', label: 'Real Madrid (Juvenil A)', type: 'pro', start: 2024.75, end: 2025.33, color: '#e8e8e8', top: false,
+    desc: "Academy Analyst Trainee. Contribution à l'analyse d'avant-match via analyse vidéo et données de tracking. Observation de l'équipe Juvenil A (U19) d'Álvaro Arbeloa et des méthodologies d'entraînement espagnoles." },
+  { id: 'botswana', label: 'Botswana FA', type: 'pro', start: 2025.42, end: 2025.58, color: '#38bdf8', top: false,
+    desc: "Coach Assistant & Analyst. Collaboration avec le Head Coach Alex Malete lors de la CAN féminine au Maroc. Conception du mésocycle de la compétition et des séances tactiques de préparation des matchs." },
+  { id: 'gc', label: 'Game Changers', type: 'pro', start: 2025.58, end: 2025.92, color: '#4ade80', top: false,
+    desc: "Sports Data Analyst (Freelance). Développement d'une plateforme d'IA pour analyser l'engagement des fans. Dashboards Power BI & Looker Studio. Audits data et conseil Fan Experience pour des clients comme la Saudi Pro League, Athletic Bilbao et la Fédération Portugaise de Football." },
 ]
 
 const START_YEAR = 2016
@@ -89,10 +103,10 @@ export default function Home() {
   const projects = [
     { id: 1, slug: 'game-model-valencia', category: 'Analyse Tactique', year: '2024', title: 'Game Model — Valencia CF', desc: "Proposition d'un nouveau game model complet pour le Valencia CF. Chaque phase de jeu (possession, défense, transitions et phases arrêtées) a été analysée et redéfinie en tenant compte du contexte sportif et institutionnel du club.", span: 2, tag: 'PDF', thumb: '/thumb-game-model.png' },
     { id: 2, slug: 'can-2025', category: 'Data Viz', year: '2025', title: 'Analyse CAN 2025', desc: "Dashboard interactif sur la formation des joueurs de la CAN 2025 — diaspora, académies, expatriation et profils des joueurs.", span: 1, tag: 'Tableau', thumb: '/thumb-can-2025.png' },
-    { id: 3, slug: 'these', category: 'Recherche', year: '2024', title: 'Thèse — xAb Metric', desc: "Développement d'une métrique conceptuelle (xAb) pour optimiser la décision entre passe et conduite de balle en phase de build-up.", span: 1, tag: 'PDF', thumb: '/thumb-these.png' },
-    { id: 4, slug: 'analyse-video-valencia', category: 'Scouting Vidéo', year: '2024', title: 'Pré-match — Valencia CF vs Real Sociedad', desc: "Analyse vidéo complète de la Real Sociedad en tant qu'analyste de Valencia CF. Chaque moment du jeu décortiqué.", span: 2, tag: 'PPT', thumb: '/thumb-analyse-video.png' },
-    { id: 5, slug: 'microcycle-valencia', category: 'Planification', year: '2024', title: 'Microcycle — Valencia CF vs Leganés', desc: "Préparation complète d'une semaine de compétition : entraînements, récupération, séances vidéo, nutrition et logistique.", span: 1, tag: 'PDF', thumb: '/thumb-microcycle.png' },
-    { id: 6, slug: 'training-nyrb', category: 'Méthodologie', year: '2024', title: 'Training Methodology — NY Red Bulls Academy', desc: "Observation et rapport complet sur la méthodologie d'entraînement de l'académie des New York Red Bulls.", span: 1, tag: 'PDF', thumb: '/thumb-training-nyrb.png' },
+    { id: 3, slug: 'these', category: 'Recherche', year: '2025', title: 'Thèse — xAb Metric', desc: "Développement d'une métrique conceptuelle (xAb) pour optimiser la décision entre passe et conduite de balle en phase de build-up.", span: 1, tag: 'PDF', thumb: '/thumb-these.png' },
+    { id: 4, slug: 'analyse-video-valencia', category: 'Scouting Vidéo', year: '2025', title: 'Pré-match — Valencia CF vs Real Sociedad', desc: "Analyse vidéo complète de la Real Sociedad en tant qu'analyste de Valencia CF. Chaque moment du jeu décortiqué.", span: 2, tag: 'PPT', thumb: '/thumb-analyse-video.png' },
+    { id: 5, slug: 'microcycle-valencia', category: 'Planification', year: '2025', title: 'Microcycle — Valencia CF vs Leganés', desc: "Préparation complète d'une semaine de compétition : entraînements, récupération, séances vidéo, nutrition et logistique.", span: 1, tag: 'PDF', thumb: '/thumb-microcycle.png' },
+    { id: 6, slug: 'training-nyrb', category: 'Méthodologie', year: '2025', title: 'Training Methodology — NY Red Bulls Academy', desc: "Observation et rapport complet sur la méthodologie d'entraînement de l'académie des New York Red Bulls.", span: 1, tag: 'PDF', thumb: '/thumb-training-nyrb.png' },
   ]
 
   const tickerItems = ['Analyse Tactique','Data Visualisation','Microcycle','Game Model','Training Methodology','Analyse Vidéo','Performance Analysis','Business Intelligence','Machine Learning','Research','xAb Metric']
@@ -119,7 +133,7 @@ export default function Home() {
         .hero-left { flex:1; }
         .hero-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:#a855f7; margin-bottom:20px; opacity:0; animation:fadeUp 0.6s ease 0.2s forwards; }
         .hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(80px,12vw,160px); line-height:0.9; letter-spacing:-1px; opacity:0; animation:fadeUp 0.7s ease 0.4s forwards; }
-        .hero-desc { margin-top:40px; max-width:440px; color:#999; line-height:1.8; font-size:14px; opacity:0; animation:fadeUp 0.7s ease 0.7s forwards; }
+        .hero-desc { margin-top:40px; max-width:440px; color:#999; line-height:1.8; font-size:14px; opacity:0; animation:fadeUp 0.7s ease 0.7s forwards; text-align:justify; }
         .hero-photo { position:relative; flex-shrink:0; opacity:0; animation:fadeUp 0.8s ease 0.5s forwards; }
         .photo-wrap { width:280px; height:380px; position:relative; overflow:hidden; border-radius:4px; }
         .photo-vignette { position:absolute; inset:0; z-index:2; pointer-events:none; background:radial-gradient(ellipse at center, transparent 40%, rgba(10,10,10,0.85) 100%), linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, transparent 30%, transparent 60%, rgba(10,10,10,0.9) 100%), linear-gradient(to right, rgba(10,10,10,0.5) 0%, transparent 40%); }
@@ -154,18 +168,28 @@ export default function Home() {
         .card:hover .card-arrow { color:#a855f7; }
         .about { padding:80px 48px; border-top:1px solid #1a1a1a; }
         .about-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,4vw,56px); line-height:1.1; margin-bottom:32px; margin-top:8px; }
-        .about-text { color:#999; line-height:1.9; font-size:14px; margin-bottom:16px; max-width:860px; }
+        .about-text { color:#999; line-height:1.9; font-size:14px; margin-bottom:16px; max-width:860px; text-align:justify; }
+
+        /* GANTT */
         .gantt-wrap { margin-top:56px; overflow-x:auto; padding-bottom:8px; }
         .gantt-inner { min-width:800px; }
-        .gantt-legend { display:flex; gap:24px; margin-bottom:20px; flex-wrap:wrap; }
-        .gantt-legend-item { display:flex; align-items:center; gap:8px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:1px; color:#777; }
-        .gantt-legend-dot { width:10px; height:10px; border-radius:2px; }
-        .gantt-labels { display:flex; justify-content:space-between; margin-bottom:6px; }
-        .gantt-year { font-family:'DM Mono',monospace; font-size:9px; color:#555; letter-spacing:1px; }
         .gantt-row-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#555; margin-bottom:4px; }
-        .gantt-row { position:relative; height:44px; border-bottom:1px solid #1a1a1a; margin-bottom:16px; }
+        .gantt-row { position:relative; height:44px; border-bottom:1px solid #1a1a1a; margin-bottom:0; }
         .gantt-grid-line { position:absolute; top:0; bottom:0; width:1px; background:#1a1a1a; }
-        .gantt-tooltip-inline { margin-top:16px; padding:10px 16px; background:#111; border:1px solid #2a2a2a; display:inline-block; min-width:200px; }
+
+        /* Axe des années entre les deux lignes */
+        .gantt-axis { position:relative; height:28px; display:flex; align-items:center; }
+        .gantt-axis-line { position:absolute; left:0; right:0; top:50%; height:1px; background:#a855f7; opacity:0.3; }
+        .gantt-axis-arrow { position:absolute; right:0; top:50%; transform:translateY(-50%); color:#a855f7; font-size:10px; opacity:0.6; }
+        .gantt-axis-years { position:absolute; left:0; right:0; top:0; bottom:0; display:flex; }
+        .gantt-axis-year { position:absolute; font-family:'DM Mono',monospace; font-size:9px; color:#a855f7; letter-spacing:1px; transform:translateX(-50%); top:50%; transform:translate(-50%, -50%); opacity:0.7; }
+
+        /* Tooltip inline */
+        .gantt-tooltip-inline { margin-top:20px; padding:14px 20px; background:#111; border:1px solid #2a2a2a; border-left:2px solid; display:inline-block; max-width:560px; }
+        .gantt-tooltip-name { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1px; margin-bottom:4px; }
+        .gantt-tooltip-type { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#555; margin-bottom:10px; }
+        .gantt-tooltip-desc { font-family:'DM Mono',monospace; font-size:11px; color:#888; line-height:1.7; }
+
         .contact { padding:80px 48px 120px; border-top:1px solid #1a1a1a; text-align:center; }
         .contact-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(60px,10vw,130px); line-height:0.9; margin-bottom:48px; }
         .contact-title .outline { -webkit-text-stroke:1px #1e1e1e; color:transparent; }
@@ -277,16 +301,11 @@ export default function Home() {
           Ces expériences m'ont permis de construire un profil à la croisée de la data et du football, capable d'intervenir aussi bien sur des sujets techniques que sur des problématiques purement footballistiques. Ce qui me motive : transformer la donnée en décisions concrètes, qu'il s'agisse de préparer un match, d'identifier un profil ou d'optimiser une semaine d'entraînement.
         </p>
 
+        {/* GANTT */}
         <div className="gantt-wrap">
           <div className="gantt-inner">
-            <div className="gantt-legend">
-              <div className="gantt-legend-item"><div className="gantt-legend-dot" style={{background:'#3b82f6'}} /><span>Académique</span></div>
-              <div className="gantt-legend-item"><div className="gantt-legend-dot" style={{background:'#777'}} /><span>Professionnel</span></div>
-              <div className="gantt-legend-item"><div className="gantt-legend-dot" style={{background:'#1a1a1a', border:'1px solid #333', width:'8px', height:'8px'}} /><span>Mission / échange</span></div>
-            </div>
-            <div className="gantt-labels">
-              {years.map(y => <span key={y} className="gantt-year">{y}</span>)}
-            </div>
+
+            {/* Ligne académique */}
             <div className="gantt-row-label">Académique</div>
             <div className="gantt-row">
               {years.map(y => <div key={y} className="gantt-grid-line" style={{left: toPercent(y) + '%'}} />)}
@@ -294,6 +313,17 @@ export default function Home() {
                 <GanttBar key={item.id} item={item} hovered={hovered} onHover={setHovered} onLeave={() => setHovered(null)} />
               ))}
             </div>
+
+            {/* Axe des années entre les deux lignes */}
+            <div className="gantt-axis">
+              <div className="gantt-axis-line" />
+              <div className="gantt-axis-arrow">→</div>
+              {years.map(y => (
+                <span key={y} className="gantt-axis-year" style={{left: toPercent(y) + '%'}}>{y}</span>
+              ))}
+            </div>
+
+            {/* Ligne pro */}
             <div className="gantt-row-label">Professionnel</div>
             <div className="gantt-row">
               {years.map(y => <div key={y} className="gantt-grid-line" style={{left: toPercent(y) + '%'}} />)}
@@ -301,10 +331,16 @@ export default function Home() {
                 <GanttBar key={item.id} item={item} hovered={hovered} onHover={setHovered} onLeave={() => setHovered(null)} />
               ))}
             </div>
+
+            {/* Tooltip */}
             {hoveredItem && (
-              <div className="gantt-tooltip-inline">
-                <div style={{color: hoveredItem.color, fontSize:'12px', marginBottom:'4px', letterSpacing:'1px', fontFamily:"'DM Mono',monospace"}}>{hoveredItem.label}</div>
-                <div style={{color:'#666', fontSize:'10px', letterSpacing:'1px', textTransform:'uppercase', fontFamily:"'DM Mono',monospace"}}>{hoveredItem.type === 'academic' ? 'Académique' : 'Professionnel'}{hoveredItem.nested ? ' — mission' : ''}</div>
+              <div className="gantt-tooltip-inline" style={{borderLeftColor: hoveredItem.color}}>
+                <div className="gantt-tooltip-name" style={{color: hoveredItem.color}}>{hoveredItem.label}</div>
+                <div className="gantt-tooltip-type">
+                  {hoveredItem.type === 'academic' ? 'Académique' : 'Professionnel'}
+                  {hoveredItem.nested ? (hoveredItem.id === 'hwu' ? ' — Échange' : ' — Mission') : ''}
+                </div>
+                <div className="gantt-tooltip-desc">{hoveredItem.desc}</div>
               </div>
             )}
           </div>
