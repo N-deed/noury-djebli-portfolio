@@ -5,14 +5,12 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const timeline = [
-  // ACADÉMIQUE
   { id: 'isep', label: 'ISEP Paris', type: 'academic', start: 2016.75, end: 2021.5, color: '#3b82f6', top: true,
     desc: "Master en Business Intelligence (M.Eng.). Formation en mathématiques appliquées, machine learning, big data, data mining et cloud computing. Semestre d'échange à Heriot-Watt University, Édimbourg (2018)." },
   { id: 'hwu', label: 'Heriot-Watt University', type: 'academic', start: 2018.0, end: 2018.5, color: '#ef4444', top: true, nested: true,
     desc: "Semestre d'échange à Édimbourg dans le cadre du cursus ingénieur de l'ISEP Paris." },
   { id: 'rmeu', label: 'Real Madrid EU', type: 'academic', start: 2024.75, end: 2025.5, color: '#e8e8e8', top: true,
     desc: "Master en Football Coaching & Management. Certification AI & Big Data for Sport [10/10]. Thèse : xAb Metric [9.7/10]. Formation en méthodologie d'entraînement, développement des talents et management de club." },
-  // PRO
   { id: 'kls', label: 'KLS', type: 'pro', start: 2020.08, end: 2020.5, color: '#eab308', top: false,
     desc: "Stage — Data Analyst. Création de dashboards automatisés Power BI. Développement de pipelines d'automatisation avec VBA." },
   { id: 'deloitte', label: 'Deloitte', type: 'pro', start: 2021.17, end: 2021.5, color: '#22c55e', top: false,
@@ -30,7 +28,7 @@ const timeline = [
   { id: 'botswana', label: 'Botswana FA', type: 'pro', start: 2025.42, end: 2025.58, color: '#38bdf8', top: false,
     desc: "Coach Assistant & Analyst. Collaboration avec le Head Coach Alex Malete lors de la CAN féminine au Maroc. Conception du mésocycle de la compétition et des séances tactiques de préparation des matchs." },
   { id: 'gc', label: 'Game Changers', type: 'pro', start: 2025.58, end: 2025.92, color: '#4ade80', top: false,
-    desc: "Sports Data Analyst (Freelance). Développement d'une plateforme d'IA pour analyser l'engagement des fans. Dashboards Power BI & Looker Studio. Audits data et conseil Fan Experience pour des clients comme la Saudi Pro League, Athletic Bilbao et la Fédération Portugaise de Football." },
+    desc: "Sports Data Analyst (Freelance). Dashboards Power BI & Looker Studio. Audits data et conseil Fan Experience pour des clients comme la Saudi Pro League, Athletic Bilbao et la Fédération Portugaise de Football." },
 ]
 
 const START_YEAR = 2016
@@ -57,7 +55,7 @@ function GanttBar({ item, hovered, onHover, onLeave }) {
         top: item.nested ? '24px' : '13px',
         background: item.color,
         borderRadius: '2px',
-        opacity: isHovered ? 1 : 0.7,
+        opacity: isHovered ? 1 : 0.75,
         cursor: 'default',
         transition: 'opacity 0.2s, transform 0.2s',
         transform: isHovered ? 'scaleY(1.3)' : 'scaleY(1)',
@@ -65,6 +63,38 @@ function GanttBar({ item, hovered, onHover, onLeave }) {
         zIndex: item.nested ? 2 : 1,
       }}
     />
+  )
+}
+
+function ContactBtn({ label, detail, href, secondary }) {
+  const [hovered, setHovered] = useState(false)
+  return (
+    <a
+      href={href}
+      target={href.startsWith('http') ? '_blank' : undefined}
+      rel={href.startsWith('http') ? 'noopener noreferrer' : undefined}
+      onMouseEnter={() => setHovered(true)}
+      onMouseLeave={() => setHovered(false)}
+      style={{
+        display: 'inline-block',
+        padding: '16px 40px',
+        border: `1px solid ${hovered ? '#a855f7' : (secondary ? '#333' : '#a855f7')}`,
+        color: secondary ? (hovered ? '#a855f7' : '#aaa') : '#a855f7',
+        fontFamily: "'DM Mono',monospace",
+        fontSize: '12px',
+        letterSpacing: '3px',
+        textTransform: 'uppercase',
+        textDecoration: 'none',
+        transition: 'all 0.25s',
+        minWidth: '200px',
+        textAlign: 'center',
+        background: 'transparent',
+      }}
+    >
+      {hovered && detail ? (
+        <span style={{color: '#e8e8e8', letterSpacing: '1px', fontSize: '11px'}}>{detail}</span>
+      ) : label}
+    </a>
   )
 }
 
@@ -100,9 +130,10 @@ export default function Home() {
     return () => document.removeEventListener('mousemove', moveCursor)
   }, [])
 
+  // CAN 2025 en span2, Game Model en span1 — reste identique
   const projects = [
-    { id: 1, slug: 'game-model-valencia', category: 'Analyse Tactique', year: '2024', title: 'Game Model — Valencia CF', desc: "Proposition d'un nouveau game model complet pour le Valencia CF. Chaque phase de jeu (possession, défense, transitions et phases arrêtées) a été analysée et redéfinie en tenant compte du contexte sportif et institutionnel du club.", span: 2, tag: 'PDF', thumb: '/thumb-game-model.png' },
-    { id: 2, slug: 'can-2025', category: 'Data Viz', year: '2025', title: 'Analyse CAN 2025', desc: "Dashboard interactif sur la formation des joueurs de la CAN 2025 — diaspora, académies, expatriation et profils des joueurs.", span: 1, tag: 'Tableau', thumb: '/thumb-can-2025.png' },
+    { id: 1, slug: 'can-2025', category: 'Data Viz', year: '2025', title: 'Analyse CAN 2025', desc: "Dashboard interactif sur la formation des joueurs de la CAN 2025 — diaspora, académies, expatriation et profils des joueurs.", span: 2, tag: 'Tableau', thumb: '/thumb-can-2025.png' },
+    { id: 2, slug: 'game-model-valencia', category: 'Analyse Tactique', year: '2024', title: 'Game Model — Valencia CF', desc: "Proposition d'un nouveau game model complet pour le Valencia CF. Chaque phase de jeu (possession, défense, transitions et phases arrêtées) a été analysée et redéfinie en tenant compte du contexte sportif et institutionnel du club.", span: 1, tag: 'PDF', thumb: '/thumb-game-model.png' },
     { id: 3, slug: 'these', category: 'Recherche', year: '2025', title: 'Thèse — xAb Metric', desc: "Développement d'une métrique conceptuelle (xAb) pour optimiser la décision entre passe et conduite de balle en phase de build-up.", span: 1, tag: 'PDF', thumb: '/thumb-these.png' },
     { id: 4, slug: 'analyse-video-valencia', category: 'Scouting Vidéo', year: '2025', title: 'Pré-match — Valencia CF vs Real Sociedad', desc: "Analyse vidéo complète de la Real Sociedad en tant qu'analyste de Valencia CF. Chaque moment du jeu décortiqué.", span: 2, tag: 'PPT', thumb: '/thumb-analyse-video.png' },
     { id: 5, slug: 'microcycle-valencia', category: 'Planification', year: '2025', title: 'Microcycle — Valencia CF vs Leganés', desc: "Préparation complète d'une semaine de compétition : entraînements, récupération, séances vidéo, nutrition et logistique.", span: 1, tag: 'PDF', thumb: '/thumb-microcycle.png' },
@@ -124,82 +155,78 @@ export default function Home() {
         nav { position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:24px 48px; background:linear-gradient(to bottom,rgba(10,10,10,0.95),transparent); }
         .nav-logo { font-family:'Bebas Neue',sans-serif; font-size:22px; letter-spacing:3px; text-decoration:none; }
         .nav-links { display:flex; gap:36px; list-style:none; }
-        .nav-links a { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:2px; text-transform:uppercase; color:#777; text-decoration:none; transition:color 0.2s; }
+        .nav-links a { font-family:'DM Mono',monospace; font-size:12px; letter-spacing:2px; text-transform:uppercase; color:#aaa; text-decoration:none; transition:color 0.2s; }
         .nav-links a:hover { color:#a855f7; }
-        .hero { min-height:100vh; display:flex; align-items:flex-end; padding:0 48px 80px; position:relative; overflow:hidden; }
+
+        .hero { min-height:100vh; display:flex; flex-direction:column; justify-content:flex-end; padding:0 48px 0; position:relative; overflow:hidden; }
         .hero-bg { position:absolute; inset:0; background:radial-gradient(ellipse 60% 50% at 65% 40%, rgba(168,85,247,0.07) 0%, transparent 70%); }
         .pitch-bg { position:absolute; right:0; top:0; width:42%; height:100%; opacity:0.04; pointer-events:none; }
-        .hero-inner { position:relative; z-index:2; width:100%; display:flex; align-items:flex-end; justify-content:space-between; gap:48px; }
+        .hero-inner { position:relative; z-index:2; width:100%; display:flex; align-items:flex-end; justify-content:space-between; gap:48px; padding-bottom:40px; }
         .hero-left { flex:1; }
-        .hero-tag { font-family:'DM Mono',monospace; font-size:11px; letter-spacing:4px; text-transform:uppercase; color:#a855f7; margin-bottom:20px; opacity:0; animation:fadeUp 0.6s ease 0.2s forwards; }
+        .hero-tag { font-family:'DM Mono',monospace; font-size:14px; letter-spacing:4px; text-transform:uppercase; color:#a855f7; margin-bottom:20px; opacity:0; animation:fadeUp 0.6s ease 0.2s forwards; }
         .hero-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(80px,12vw,160px); line-height:0.9; letter-spacing:-1px; opacity:0; animation:fadeUp 0.7s ease 0.4s forwards; }
-        .hero-desc { margin-top:40px; max-width:440px; color:#999; line-height:1.8; font-size:14px; opacity:0; animation:fadeUp 0.7s ease 0.7s forwards; text-align:justify; }
+        .hero-desc { margin-top:40px; max-width:440px; color:#aaa; line-height:1.8; font-size:14px; opacity:0; animation:fadeUp 0.7s ease 0.7s forwards; text-align:justify; }
         .hero-photo { position:relative; flex-shrink:0; opacity:0; animation:fadeUp 0.8s ease 0.5s forwards; }
-        .photo-wrap { width:280px; height:380px; position:relative; overflow:hidden; border-radius:4px; }
+        .photo-wrap { width:280px; height:360px; position:relative; overflow:hidden; border-radius:4px; }
         .photo-vignette { position:absolute; inset:0; z-index:2; pointer-events:none; background:radial-gradient(ellipse at center, transparent 40%, rgba(10,10,10,0.85) 100%), linear-gradient(to bottom, rgba(10,10,10,0.4) 0%, transparent 30%, transparent 60%, rgba(10,10,10,0.9) 100%), linear-gradient(to right, rgba(10,10,10,0.5) 0%, transparent 40%); }
         .photo-corner-tl { position:absolute; top:0; left:0; width:20px; height:20px; border-top:1px solid rgba(168,85,247,0.5); border-left:1px solid rgba(168,85,247,0.5); z-index:3; }
         .photo-corner-br { position:absolute; bottom:0; right:0; width:20px; height:20px; border-bottom:1px solid rgba(168,85,247,0.5); border-right:1px solid rgba(168,85,247,0.5); z-index:3; }
-        .available-badge { position:absolute; bottom:16px; right:16px; z-index:10; border:1px solid rgba(168,85,247,0.3); padding:6px 12px; background:rgba(10,10,10,0.8); }
-        .available-badge span { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#a855f7; }
-        .ticker { border-top:1px solid #1e1e1e; border-bottom:1px solid #1e1e1e; padding:16px 0; overflow:hidden; white-space:nowrap; }
+
+        .ticker { border-top:1px solid #1e1e1e; border-bottom:1px solid #1e1e1e; padding:16px 0; overflow:hidden; white-space:nowrap; position:relative; z-index:2; background:#0a0a0a; }
         .ticker-inner { display:inline-flex; gap:60px; animation:ticker 30s linear infinite; }
-        .ticker-item { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:4px; text-transform:uppercase; color:#666; }
-        .ticker-item .dot { color:rgba(168,85,247,0.5); }
-        .section-label { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:3px; text-transform:uppercase; color:#a855f7; margin-bottom:16px; }
-        .section-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(40px,6vw,80px); margin-top:8px; }
+        .ticker-item { font-family:'Bebas Neue',sans-serif; font-size:13px; letter-spacing:4px; text-transform:uppercase; color:#aaa; }
+        .ticker-item .dot { color:rgba(168,85,247,0.6); }
+
+        .section-label { font-family:'DM Mono',monospace; font-size:14px; letter-spacing:3px; text-transform:uppercase; color:#a855f7; margin-bottom:16px; }
+        .section-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(56px,7vw,96px); margin-top:8px; }
+
         .projects { padding:80px 48px; }
         .projects-header { margin-bottom:60px; }
-        .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:2px; }
-        .card { background:#0d0d0d; border:1px solid #1a1a1a; transition:border-color 0.3s; text-decoration:none; display:block; }
-        .card:hover { border-color:rgba(168,85,247,0.5); }
+        .grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+        .card { background:#0d0d0d; border:1px solid #2a2a2a; transition:border-color 0.3s, box-shadow 0.3s; text-decoration:none; display:block; border-radius:4px; overflow:hidden; }
+        .card:hover { border-color:rgba(168,85,247,0.6); box-shadow:0 0 20px rgba(168,85,247,0.08); }
         .card.span2 { grid-column:span 2; }
-        .card-thumb { height:180px; background:linear-gradient(135deg,#0f0a1a,#1a0f2e); position:relative; display:flex; align-items:center; justify-content:center; overflow:hidden; }
+        .card-thumb { height:180px; background:linear-gradient(135deg,#0f0a1a,#1a0f2e); position:relative; overflow:hidden; }
         .card.span2 .card-thumb { height:220px; }
-        .card-thumb-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; filter:brightness(0.6) saturate(0.8); transition:filter 0.3s; }
-        .card:hover .card-thumb-img { filter:brightness(0.75) saturate(1); }
-        .card-tag { position:absolute; top:14px; right:14px; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border:1px solid rgba(168,85,247,0.4); color:#a855f7; background:rgba(10,10,10,0.7); z-index:2; }
+        .card-thumb-img { position:absolute; inset:0; width:100%; height:100%; object-fit:cover; object-position:top; filter:brightness(0.85) saturate(0.85); transition:filter 0.3s; }
+        .card:hover .card-thumb-img { filter:brightness(1) saturate(1.1); }
+        .card-tag { position:absolute; top:14px; right:14px; font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; padding:4px 10px; border:1px solid rgba(168,85,247,0.5); color:#a855f7; background:rgba(10,10,10,0.8); z-index:2; border-radius:2px; }
         .card-body { padding:28px; }
         .card-meta { display:flex; gap:16px; align-items:center; margin-bottom:12px; }
         .card-cat { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#a855f7; }
-        .card-year { font-family:'DM Mono',monospace; font-size:9px; color:#777; }
+        .card-year { font-family:'DM Mono',monospace; font-size:9px; color:#888; }
         .card-title { font-family:'Bebas Neue',sans-serif; font-size:24px; letter-spacing:0.5px; margin-bottom:10px; color:#e8e8e8; }
-        .card-desc { font-size:13px; line-height:1.6; color:#888; }
-        .card-arrow { margin-top:20px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#666; transition:all 0.2s; }
+        .card-desc { font-size:13px; line-height:1.6; color:#999; }
+        .card-arrow { margin-top:20px; font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#777; transition:all 0.2s; }
         .card:hover .card-arrow { color:#a855f7; }
+
         .about { padding:80px 48px; border-top:1px solid #1a1a1a; }
-        .about-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(36px,4vw,56px); line-height:1.1; margin-bottom:32px; margin-top:8px; }
-        .about-text { color:#999; line-height:1.9; font-size:14px; margin-bottom:16px; max-width:860px; text-align:justify; }
+        .about-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(48px,5vw,72px); line-height:1.05; margin-bottom:32px; margin-top:8px; }
+        .about-text { color:#aaa; line-height:1.9; font-size:14px; margin-bottom:16px; max-width:860px; text-align:justify; }
 
-        /* GANTT */
         .gantt-wrap { margin-top:56px; overflow-x:auto; padding-bottom:8px; }
-        .gantt-inner { min-width:800px; }
-        .gantt-row-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#555; margin-bottom:4px; }
-        .gantt-row { position:relative; height:44px; border-bottom:1px solid #1a1a1a; margin-bottom:0; }
-        .gantt-grid-line { position:absolute; top:0; bottom:0; width:1px; background:#1a1a1a; }
+        .gantt-inner { min-width:860px; }
+        .gantt-row-label { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#aaa; margin-bottom:4px; }
+        .gantt-row { position:relative; height:44px; }
+        .gantt-grid-line { position:absolute; top:0; bottom:0; width:1px; background:#1e1e1e; }
 
-        /* Axe des années entre les deux lignes */
-        .gantt-axis { position:relative; height:28px; display:flex; align-items:center; }
-        .gantt-axis-line { position:absolute; left:0; right:0; top:50%; height:1px; background:#a855f7; opacity:0.3; }
-        .gantt-axis-arrow { position:absolute; right:0; top:50%; transform:translateY(-50%); color:#a855f7; font-size:10px; opacity:0.6; }
-        .gantt-axis-years { position:absolute; left:0; right:0; top:0; bottom:0; display:flex; }
-        .gantt-axis-year { position:absolute; font-family:'DM Mono',monospace; font-size:9px; color:#a855f7; letter-spacing:1px; transform:translateX(-50%); top:50%; transform:translate(-50%, -50%); opacity:0.7; }
+        .gantt-axis-wrap { position:relative; height:36px; }
+        .gantt-axis-year { position:absolute; font-family:'DM Mono',monospace; font-size:9px; color:#a855f7; letter-spacing:1px; opacity:0.85; white-space:nowrap; top:2px; }
 
-        /* Tooltip inline */
-        .gantt-tooltip-inline { margin-top:20px; padding:14px 20px; background:#111; border:1px solid #2a2a2a; border-left:2px solid; display:inline-block; max-width:560px; }
-        .gantt-tooltip-name { font-family:'Bebas Neue',sans-serif; font-size:18px; letter-spacing:1px; margin-bottom:4px; }
-        .gantt-tooltip-type { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#555; margin-bottom:10px; }
-        .gantt-tooltip-desc { font-family:'DM Mono',monospace; font-size:11px; color:#888; line-height:1.7; }
+        .gantt-tooltip-inline { margin-top:20px; padding:16px 20px; background:#111; border:1px solid #2a2a2a; border-left:3px solid; display:inline-block; max-width:600px; }
+        .gantt-tooltip-name { font-family:'Bebas Neue',sans-serif; font-size:20px; letter-spacing:1px; margin-bottom:4px; }
+        .gantt-tooltip-type { font-family:'DM Mono',monospace; font-size:9px; letter-spacing:2px; text-transform:uppercase; color:#666; margin-bottom:10px; }
+        .gantt-tooltip-desc { font-family:'DM Mono',monospace; font-size:11px; color:#999; line-height:1.7; }
 
         .contact { padding:80px 48px 120px; border-top:1px solid #1a1a1a; text-align:center; }
         .contact-title { font-family:'Bebas Neue',sans-serif; font-size:clamp(60px,10vw,130px); line-height:0.9; margin-bottom:48px; }
-        .contact-title .outline { -webkit-text-stroke:1px #1e1e1e; color:transparent; }
+        .contact-title .solid { color:#e8e8e8; }
+        .contact-title .outline { -webkit-text-stroke:1px #444; color:transparent; }
         .contact-links { display:flex; gap:16px; justify-content:center; flex-wrap:wrap; }
-        .contact-btn { display:inline-block; padding:16px 40px; border:1px solid #a855f7; color:#a855f7; font-family:'DM Mono',monospace; font-size:12px; letter-spacing:3px; text-transform:uppercase; text-decoration:none; transition:all 0.25s; }
-        .contact-btn:hover { background:#a855f7; color:#0a0a0a; }
-        .contact-btn.secondary { border-color:#2a2a2a; color:#777; }
-        .contact-btn.secondary:hover { border-color:#a855f7; color:#a855f7; background:transparent; }
+
         footer { border-top:1px solid #1a1a1a; padding:24px 48px; display:flex; justify-content:space-between; align-items:center; }
-        footer p { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#444; }
+        footer p { font-family:'DM Mono',monospace; font-size:10px; letter-spacing:2px; text-transform:uppercase; color:#555; }
+
         .fade-in { opacity:0; transform:translateY(20px); transition:opacity 0.6s ease, transform 0.6s ease; }
         .fade-in.visible { opacity:1; transform:translateY(0); }
         @keyframes fadeUp { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
@@ -249,18 +276,17 @@ export default function Home() {
               <div className="photo-corner-br" />
               <Image src="/Portrait_Noury.jpeg" alt="Noury Djebli" fill style={{objectFit:'cover', objectPosition:'top', filter:'grayscale(15%) contrast(1.05)'}} priority />
             </div>
-            <div className="available-badge"><span>Disponible</span></div>
+          </div>
+        </div>
+
+        <div className="ticker" style={{margin:'0 -48px'}}>
+          <div className="ticker-inner">
+            {[...tickerItems, ...tickerItems].map((item, i) => (
+              <span key={i} className="ticker-item">{item} <span className="dot">✦</span></span>
+            ))}
           </div>
         </div>
       </section>
-
-      <div className="ticker">
-        <div className="ticker-inner">
-          {[...tickerItems, ...tickerItems].map((item, i) => (
-            <span key={i} className="ticker-item">{item} <span className="dot">✦</span></span>
-          ))}
-        </div>
-      </div>
 
       <section id="projets" className="projects fade-in">
         <div className="projects-header">
@@ -301,11 +327,8 @@ export default function Home() {
           Ces expériences m'ont permis de construire un profil à la croisée de la data et du football, capable d'intervenir aussi bien sur des sujets techniques que sur des problématiques purement footballistiques. Ce qui me motive : transformer la donnée en décisions concrètes, qu'il s'agisse de préparer un match, d'identifier un profil ou d'optimiser une semaine d'entraînement.
         </p>
 
-        {/* GANTT */}
         <div className="gantt-wrap">
           <div className="gantt-inner">
-
-            {/* Ligne académique */}
             <div className="gantt-row-label">Académique</div>
             <div className="gantt-row">
               {years.map(y => <div key={y} className="gantt-grid-line" style={{left: toPercent(y) + '%'}} />)}
@@ -314,16 +337,27 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Axe des années entre les deux lignes */}
-            <div className="gantt-axis">
-              <div className="gantt-axis-line" />
-              <div className="gantt-axis-arrow">→</div>
-              {years.map(y => (
-                <span key={y} className="gantt-axis-year" style={{left: toPercent(y) + '%'}}>{y}</span>
-              ))}
+            {/* Axe années — 2016 aligné à gauche, 2026 à droite, les autres centrés */}
+            <div className="gantt-axis-wrap">
+              {years.map((y, i) => {
+                let transform = 'translateX(-50%)'
+                let left = toPercent(y) + '%'
+                if (i === 0) { transform = 'translateX(0)'; left = '0' }
+                if (i === years.length - 1) { transform = 'translateX(-100%)'; left = '100%' }
+                return (
+                  <span key={y} className="gantt-axis-year" style={{left, transform}}>{y}</span>
+                )
+              })}
+              <svg width="100%" height="16" style={{position:'absolute', bottom:0, left:0}} preserveAspectRatio="none">
+                <defs>
+                  <marker id="arrowhead" markerWidth="8" markerHeight="6" refX="8" refY="3" orient="auto">
+                    <polygon points="0 0, 8 3, 0 6" fill="rgba(168,85,247,0.6)" />
+                  </marker>
+                </defs>
+                <line x1="0" y1="8" x2="99%" y2="8" stroke="rgba(168,85,247,0.5)" strokeWidth="1.5" markerEnd="url(#arrowhead)" />
+              </svg>
             </div>
 
-            {/* Ligne pro */}
             <div className="gantt-row-label">Professionnel</div>
             <div className="gantt-row">
               {years.map(y => <div key={y} className="gantt-grid-line" style={{left: toPercent(y) + '%'}} />)}
@@ -332,7 +366,6 @@ export default function Home() {
               ))}
             </div>
 
-            {/* Tooltip */}
             {hoveredItem && (
               <div className="gantt-tooltip-inline" style={{borderLeftColor: hoveredItem.color}}>
                 <div className="gantt-tooltip-name" style={{color: hoveredItem.color}}>{hoveredItem.label}</div>
@@ -350,16 +383,17 @@ export default function Home() {
       <section id="contact" className="contact fade-in">
         <p className="section-label">// 03 — Contact</p>
         <h2 className="contact-title">
-          <span className="outline">Travaillons</span><br/>Ensemble
+          <span className="solid">Travaillons</span><br/><span className="outline">Ensemble</span>
         </h2>
         <div className="contact-links">
-          <a href="mailto:n.djebli98@gmail.com" className="contact-btn">Envoyer un email</a>
-          <a href="https://www.linkedin.com/in/noury-djebli" target="_blank" rel="noopener noreferrer" className="contact-btn secondary">LinkedIn →</a>
+          <ContactBtn label="Email" detail="n.djebli98@gmail.com" href="mailto:n.djebli98@gmail.com" />
+          <ContactBtn label="WhatsApp" detail="+33 6 19 04 85 34" href="https://wa.me/33619048534" secondary />
+          <ContactBtn label="LinkedIn →" href="https://www.linkedin.com/in/noury-djebli/" secondary />
         </div>
       </section>
 
       <footer>
-        <p>© 2025 — Noury Djebli</p>
+        <p>© 2026 — Noury Djebli</p>
         <p>Football Data Analyst</p>
       </footer>
     </>
