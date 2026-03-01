@@ -238,10 +238,10 @@ export default function Home() {
   }
 
   const projects = [
-    { id: 1, slug: 'can-2025', category: 'Data Viz', year: '2026', title: 'Analyse CAN 2025', desc: "Dashboard interactif sur la formation des joueurs de la CAN 2025 — diaspora, académies, expatriation et profils des joueurs.", span: 2, tags: ['PDF', 'Tableau'], thumb: '/thumb-can-2025.png' },
-    { id: 2, slug: 'game-model-valencia', category: 'Analyse Tactique', year: '2024', title: 'Game Model — Valencia CF', desc: "Proposition d'un nouveau game model complet pour le Valencia CF. Chaque phase de jeu analysée et redéfinie en tenant compte du contexte sportif et institutionnel du club.", span: 1, tags: ['PDF'], thumb: '/thumb-game-model.png' },
-    { id: 3, slug: 'these', category: 'Recherche', year: '2025', title: 'Thèse — xAb Metric', desc: "Développement d'une métrique conceptuelle (xAb) pour optimiser la décision entre passe et conduite de balle en phase de build-up.", span: 1, tags: ['PDF'], thumb: '/thumb-these.png' },
-    { id: 4, slug: 'analyse-video-valencia', category: 'Scouting Vidéo', year: '2025', title: 'Pré-match — Valencia CF vs Real Sociedad', desc: "Analyse vidéo complète de la Real Sociedad en tant qu'analyste de Valencia CF. Chaque moment du jeu décortiqué.", span: 2, tags: ['PPTX'], thumb: '/thumb-analyse-video.png' },
+    { id: 1, slug: 'can-2025', category: 'Data Viz', year: '2026', title: 'Analyse CAN 2025', desc: "Dashboard interactif sur la formation des joueurs de la CAN 2025 — diaspora, académies, expatriation et profils des joueurs.", span: 2, tags: ['Tableau', 'PPTX'], thumb: '/thumb-can-2025.png' },
+    { id: 2, slug: 'game-model-valencia', category: 'Analyse Tactique', year: '2024', title: 'Game Model — Valencia CF', desc: "Proposition d'un nouveau game model complet pour le Valencia CF. Chaque phase de jeu analysée et redéfinie en tenant compte du contexte sportif et institutionnel du club.", span: 1, tags: ['PPTX'], thumb: '/thumb-game-model.png' },
+    { id: 3, slug: 'these', category: 'Recherche', year: '2025', title: 'Thèse — xAb Metric', desc: "Développement d'une métrique conceptuelle (xAb) pour optimiser la décision entre passe et conduite de balle en phase de build-up.", span: 1, tags: ['PDF', 'PPTX'], thumb: '/thumb-these.png' },
+    { id: 4, slug: 'analyse-video-valencia', category: 'Analyse Vidéo', year: '2025', title: 'Opposition Video Analysis — Real Sociedad for Valencia CF', desc: "Analyse vidéo complète de la Real Sociedad en tant qu'analyste de Valencia CF. Chaque moment du jeu décortiqué.", span: 2, tags: ['PPTX'], thumb: '/thumb-analyse-video.png' },
     { id: 5, slug: 'microcycle-valencia', category: 'Planification', year: '2025', title: 'Microcycle — Valencia CF vs Leganés', desc: "Préparation complète d'une semaine de compétition : entraînements, récupération, séances vidéo, nutrition et logistique.", span: 1, tags: ['PDF'], thumb: '/thumb-microcycle.png' },
     { id: 6, slug: 'training-nyrb', category: 'Méthodologie', year: '2025', title: 'Training Methodology — NY Red Bulls Academy', desc: "Observation et rapport complet sur la méthodologie d'entraînement de l'académie des New York Red Bulls.", span: 1, tags: ['PDF'], thumb: '/thumb-training-nyrb.png' },
   ]
@@ -424,7 +424,7 @@ export default function Home() {
             </h1>
             <p className="hero-desc">
               Data Analyst spécialisé en football, avec un solide background technique et une compréhension approfondie du jeu.<br/><br/>
-              Je transforme la donnée en insights actionnables pour accompagner les décisions tactiques, la préparation de la compétition et l'optimisation de la performance.
+              Je transforme la donnée en insights actionnables pour accompagner les décisions tactiques, la préparation à la compétition et l'optimisation de la performance.
             </p>
           </div>
           <div className="hero-photo">

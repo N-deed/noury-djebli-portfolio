@@ -8,7 +8,7 @@ export default function GameModelValencia() {
   const meta = {
     category: 'Analyse Tactique',
     year: '2024',
-    tags: ['PDF'],
+    tags: ['PPTX'],
     title: 'Game Model\nValencia CF',
   }
 

@@ -12,7 +12,7 @@ export default function CAN2025() {
   const meta = {
     category: 'Data Viz',
     year: '2026',
-    tags: ['PDF', 'Tableau'],
+    tags: ['Tableau', 'PPTX'],
     title: 'Analyse\nCAN 2025',
   }
 
@@ -50,7 +50,7 @@ export default function CAN2025() {
             cursor:'pointer', transition:'all 0.2s', borderRadius:'2px'
           }}
         >
-          Rapport PDF
+          Rapport d'Analyse
         </button>
       </div>
       <div className="embed-container">

@@ -6,10 +6,10 @@ const DRIVE_ID = '11QDr55bYZ5aI4-AEoxbtGFNf1SakP0yJ'
 
 export default function AnalyseVideoValencia() {
   const meta = {
-    category: 'Scouting Vidéo',
+    category: 'Analyse Vidéo',
     year: '2025',
     tags: ['PPTX'],
-    title: 'Pré-match\nValencia CF vs Real Sociedad',
+    title: 'Opposition Video Analysis\nReal Sociedad for Valencia CF',
   }
 
   const contextText = "Réalisé en tant qu'Opponent Video Analyst dans le cadre du Master à la Escuela Universitaria Real Madrid, ce projet propose une préparation tactique complète pour le Valencia CF. L'étude intègre une analyse exhaustive des cinq phases de jeu (possession, transition défensive, défense organisée, transition offensive et coups de pied arrêtés) mise en relation directe avec le Game Model de Valencia. L'objectif est double : exploiter les vulnérabilités structurelles de la Real Sociedad tout en ajustant le système de Valencia pour neutraliser les forces adverses susceptibles de pénaliser nos propres faiblesses."

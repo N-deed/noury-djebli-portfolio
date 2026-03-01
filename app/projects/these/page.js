@@ -12,7 +12,7 @@ export default function These() {
   const meta = {
     category: 'Recherche',
     year: '2025',
-    tags: ['PDF'],
+    tags: ['PDF', 'PPTX'],
     title: 'Thèse — xAb\nMetric',
   }
 
@@ -51,7 +51,7 @@ export default function These() {
             cursor:'pointer', transition:'all 0.2s', borderRadius:'2px'
           }}
         >
-          Présentation orale
+          Support de Soutenance
         </button>
       </div>
       <div className="embed-container">
