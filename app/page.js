@@ -193,8 +193,10 @@ export default function Home() {
   const [isMobile, setIsMobile] = useState(false)
 
   const handleOutsideTouch = useCallback((e) => {
-    if (!e.target.closest('.gantt-bar')) setGanttActive(null)
-  }, [])
+    // Sur mobile : fermeture uniquement via ✕ ou re-tap sur la même barre
+    // Sur desktop : fermeture au clic ailleurs
+    if (!isMobile && !e.target.closest('.gantt-bar')) setGanttActive(null)
+  }, [isMobile])
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth <= 768)
@@ -531,6 +533,12 @@ export default function Home() {
                   <span className="gantt-tooltip-name" style={{color: activeItem.color}}>{activeItem.label}</span>
                   <span className="gantt-tooltip-subtitle" style={{color: activeItem.color}}>{activeItem.subtitle}</span>
                   <span className="gantt-tooltip-period">{activeItem.period}</span>
+                  {isMobile && (
+                    <button
+                      onClick={() => setGanttActive(null)}
+                      style={{marginLeft:'auto', background:'none', border:'none', color:'#555', fontSize:'16px', cursor:'pointer', padding:'0 0 0 12px', lineHeight:1, flexShrink:0}}
+                    >✕</button>
+                  )}
                 </div>
                 <div className="gantt-tooltip-type">
                   {activeItem.type === 'academic' ? 'Académique' : 'Professionnel'}
